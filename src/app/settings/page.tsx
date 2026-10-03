@@ -1,0 +1,1 @@
+import { SettingsForm } from "@/components/settings-form";export default function SettingsPage(){return <div className="page-shell"><h1 className="page-title">Settings</h1><p className="page-subtitle">Update the public details on your player profile.</p><SettingsForm/></div>}

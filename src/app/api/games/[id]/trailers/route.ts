@@ -1,0 +1,1 @@
+import { NextResponse } from "next/server";import { gameProvider } from "@/lib/games/provider";export async function GET(_r:Request,{params}:{params:Promise<{id:string}>}){try{return NextResponse.json(await gameProvider.getTrailers((await params).id))}catch(e){return NextResponse.json({error:e instanceof Error?e.message:"Trailers unavailable."},{status:503})}}
