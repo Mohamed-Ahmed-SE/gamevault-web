@@ -1,0 +1,1 @@
+import { Suspense } from "react";import { DiscoverBrowser } from "@/components/discover-browser";export default function SearchPage(){return <div className="page-shell"><h1 className="page-title">Search</h1><p className="page-subtitle">Find a game across every platform.</p><Suspense fallback={<div className="skeleton skeleton-heading"/>}><DiscoverBrowser/></Suspense></div>}

@@ -1,0 +1,2 @@
+import { NextResponse } from "next/server"; import { gameProvider } from "@/lib/games/provider";
+export async function GET() { try { const now = new Date().toISOString().slice(0,10); const end = new Date(Date.now()+365*86400000).toISOString().slice(0,10); return NextResponse.json(await gameProvider.searchGames({ ordering: "released", year: `${now},${end}` })); } catch (e) { return NextResponse.json({ error: e instanceof Error ? e.message : "Catalog unavailable." }, { status: 503 }); } }

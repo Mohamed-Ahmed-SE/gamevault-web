@@ -1,0 +1,1 @@
+import { Suspense } from "react";import { AuthForm } from "@/components/auth-form";export default function LoginPage(){return <Suspense fallback={<div className="skeleton skeleton-card"/>}><AuthForm mode="login"/></Suspense>}
