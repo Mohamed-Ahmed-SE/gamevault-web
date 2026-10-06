@@ -48,7 +48,7 @@ export function ProfileStats({ username }: { username: string }) {
   return <div className="page-shell">
     <h1 className="page-title">{profile.display_name ?? profile.username}&apos;s stats</h1>
     <p className="page-subtitle">Your private play history, in one place.</p>
-    <div className="stat-grid">
+    <div className="stat-grid profile-stat-grid">
       <div className="stat-box"><strong>{library.games.length}</strong><span>Games tracked</span></div>
       {statuses.map((status) => <div className="stat-box" key={status}><strong>{library.games.filter((game) => game.status === status).length}</strong><span>{labels[status]}</span></div>)}
       <div className="stat-box"><strong>{trackedHours}h</strong><span>Playtime</span></div>

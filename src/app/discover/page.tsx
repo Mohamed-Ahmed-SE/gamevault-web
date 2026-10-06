@@ -1,2 +1,12 @@
-import { Suspense } from "react"; import { DiscoverBrowser } from "@/components/discover-browser";
-export default function DiscoverPage() { return <div className="page-shell"><h1 className="page-title">Discover games</h1><p className="page-subtitle">Search across the collection. Filter by platform, genre, and release year.</p><Suspense fallback={<div className="skeleton skeleton-heading"/>}><DiscoverBrowser/></Suspense></div>; }
+import { Suspense } from "react";
+import { DiscoverBrowser } from "@/components/discover-browser";
+
+export default function DiscoverPage() {
+  return (
+    <div className="page-shell">
+      <Suspense fallback={<div className="skeleton skeleton-hero" />}>
+        <DiscoverBrowser />
+      </Suspense>
+    </div>
+  );
+}

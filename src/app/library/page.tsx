@@ -1,1 +1,9 @@
-import { LibraryBrowser } from "@/components/library-browser";export default function LibraryPage(){return <div className="page-shell"><h1 className="page-title">Your library</h1><p className="page-subtitle">The games you want to play, are playing, and have finished.</p><LibraryBrowser/></div>}
+import { LibraryBrowser } from "@/components/library-browser";
+
+export default function LibraryPage() {
+  return (
+    <div className="page-shell">
+      <LibraryBrowser />
+    </div>
+  );
+}

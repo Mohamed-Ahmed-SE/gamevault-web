@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Check, Plus } from "lucide-react";
+import { Check, Plus } from "@/components/icons";
 
 type LibraryActionState = "checking" | "ready" | "saving" | "existing" | "saved";
 

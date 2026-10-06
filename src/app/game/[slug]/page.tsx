@@ -1,8 +1,49 @@
-import Image from "next/image";
-import { notFound } from "next/navigation";import type { Metadata } from "next";import Link from "next/link";import { gameProvider } from "@/lib/games/provider";import { GameLibraryPanel } from "@/components/game-library-panel";import { MediaGallery } from "@/components/media-gallery";import { GameRail } from "@/components/game-rail";
-export async function generateMetadata({params}:{params:Promise<{slug:string}>}):Promise<Metadata>{const {slug}=await params;return {title:slug.replaceAll("-"," ")}}
-export default async function GamePage({params}:{params:Promise<{slug:string}>}){const {slug}=await params;let game;try{game=await gameProvider.getGame(slug)}catch(e){if(process.env.RAWG_API_KEY)notFound();return <div className="state-panel"><h1>Game details unavailable</h1><p>{e instanceof Error?e.message:"Catalog connection failed."}</p><Link className="button button-outline" href="/discover">Browse catalog</Link></div>}
-return <><section className="game-hero" style={game.backgroundUrl?{backgroundImage:`url("${game.backgroundUrl}")`}:undefined}><div className="game-hero-content"><div className="hero-index">GAME RECORD / {game.releaseDate?.slice(0,4)??"DATE UNKNOWN"}</div><h1>{game.title}</h1><div className="hero-facts">{game.platforms.slice(0,5).map(p=><span className="chip" key={p.id}>{p.name}</span>)}{game.genres.slice(0,3).map(g=><span className="chip" key={g.id}>{g.name}</span>)}</div><p>{game.rating!==null?`Community rating ${game.rating.toFixed(1)} / 5`:"Community rating unavailable"}{game.metacritic!==null?` · Metacritic ${game.metacritic}`:""}</p></div></section><div className="detail-layout"><article className="detail-main"><h2>About the game</h2><p className="detail-copy">{game.description}</p><h2>Game details</h2><div className="stat-grid" style={{gridTemplateColumns:"repeat(2,1fr)"}}><div className="stat-box"><span>Release</span><strong style={{fontSize:16}}>{game.releaseDate??"Unknown"}</strong></div><div className="stat-box"><span>Age rating</span><strong style={{fontSize:16}}>{game.esrbRating??"Not rated"}</strong></div><div className="stat-box"><span>Developed by</span><strong style={{fontSize:15}}>{game.developers.join(", ")||"Not listed"}</strong></div><div className="stat-box"><span>Published by</span><strong style={{fontSize:15}}>{game.publishers.join(", ")||"Not listed"}</strong></div></div>{game.tags.length>0&&<><h2>Tags</h2><div className="hero-facts">{game.tags.map(t=><span className="chip" key={t}>{t}</span>)}</div></>}{game.requirements&&<><h2>PC requirements</h2><p className="detail-copy">{game.requirements}</p></>}{game.website&&<p><a className="button button-outline" href={game.website} target="_blank" rel="noreferrer">Official website ↗</a></p>}
-{game.trailers.length>0&&<><h2>Trailers</h2><div><video className="trailer-frame" controls preload="none" poster={game.trailers[0].thumbnailUrl??undefined}><source src={game.trailers[0].url}/><a href={game.trailers[0].url}>Open trailer</a></video><p className="page-subtitle">{game.trailers[0].name} · RAWG media</p></div></>}
-<h2>Gallery</h2><MediaGallery images={game.images}/>{game.achievements.length>0&&<><h2>Achievements metadata</h2><div className="achievement-list">{game.achievements.map(a=><div className="library-row" key={a.id}>{a.iconUrl?<Image className="library-thumb" src={a.iconUrl} alt="" width={128} height={168}/>:<div className="library-thumb"/>}<div><strong>{a.name}</strong><p className="page-subtitle">{a.description}</p></div><small>{a.rarity!==null?`${a.rarity}% rarity`:"Provider data"}</small></div>)}</div></>}
-</article><GameLibraryPanel game={game}/></div><div className="page-shell"><GameRail title="Similar games" games={game.similar}/></div></>}
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { gameProvider } from "@/lib/games/provider";
+import { GamePs5Hub } from "@/components/game-ps5-hub";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const game = await gameProvider.getGame(slug);
+    return {
+      title: `${game.title} | GameVault`,
+      description: game.description.slice(0, 160),
+    };
+  } catch {
+    return { title: `${slug.replaceAll("-", " ")} | GameVault` };
+  }
+}
+
+export default async function GamePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  let game;
+  try {
+    game = await gameProvider.getGameWithArtwork(slug);
+  } catch (e) {
+    if (process.env.RAWG_API_KEY) notFound();
+    return (
+      <div className="page-shell" style={{ marginTop: 60 }}>
+        <div className="state-panel">
+          <h1>Game details unavailable</h1>
+          <p>{e instanceof Error ? e.message : "Catalog connection failed."}</p>
+          <Link className="button button-outline" href="/discover">
+            Browse catalog
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return <GamePs5Hub game={game} />;
+}

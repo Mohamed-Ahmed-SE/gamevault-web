@@ -1,1 +1,20 @@
-import { gameProvider } from "@/lib/games/provider";import { GameCard } from "@/components/game-card";import type { GameSummary } from "@/lib/games/types";export default async function UpcomingPage(){let games:GameSummary[]=[];let error="";try{const now=new Date().toISOString().slice(0,10),end=new Date(Date.now()+365*86400000).toISOString().slice(0,10);games=(await gameProvider.searchGames({ordering:"released",year:`${now},${end}`,page:1})).games;}catch(e){error=e instanceof Error?e.message:"Catalog unavailable."}return <div className="page-shell"><h1 className="page-title">Coming soon</h1><p className="page-subtitle">Upcoming release dates from the live catalog.</p>{error?<div className="empty-state"><h2>Release calendar unavailable</h2><p>{error}</p></div>:games.length?<div className="results-grid">{games.map((g,i)=><GameCard key={g.id} game={g} index={i}/>)}</div>:<div className="empty-state"><h2>No upcoming releases found</h2><p>The provider did not return future release dates for this query.</p></div>}</div>}
+import { gameProvider } from "@/lib/games/provider";
+import type { GameSummary } from "@/lib/games/types";
+import { UpcomingView } from "@/components/upcoming-view";
+
+export default async function UpcomingPage() {
+  let games: GameSummary[] = [];
+  try {
+    const now = new Date().toISOString().slice(0, 10);
+    const end = new Date(Date.now() + 365 * 86400000).toISOString().slice(0, 10);
+    games = (await gameProvider.searchGames({ ordering: "released", year: `${now},${end}`, page: 1 })).games;
+  } catch {
+    games = [];
+  }
+
+  return (
+    <div className="page-shell">
+      <UpcomingView liveGames={games} />
+    </div>
+  );
+}
