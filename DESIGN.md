@@ -2,18 +2,20 @@
 name: GameVault
 description: A dark, indexed catalog for discovering and remembering games.
 colors:
-  signal-orange: "#f16a43"
-  signal-orange-soft: "#ff9771"
-  graphite: "#0b0d10"
-  surface: "#11151a"
-  raised-surface: "#171c22"
-  paper-ink: "#f1f0ed"
-  muted-ink: "#a6a7a4"
-  faint-ink: "#71757a"
-  divider: "#2a2e33"
+  vivid-lime: "#a3e635"
+  vivid-lime-soft: "#bef264"
+  graphite: "#07080a"
+  surface: "#0e1117"
+  raised-surface: "#151821"
+  paper-ink: "#f3f4f6"
+  muted-ink: "#9ca3af"
+  faint-ink: "#6b7280"
+  divider: "rgba(255, 255, 255, 0.08)"
 typography:
+  display:
+    fontFamily: "Manrope Variable, Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
   body:
-    fontFamily: "Arial, Helvetica, sans-serif"
+    fontFamily: "Manrope Variable, Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
     fontSize: "15px"
     lineHeight: 1.5
 ---
@@ -24,22 +26,22 @@ typography:
 
 **Creative North Star: “The Collector's Catalog”**
 
-This visual direction is inferred from the supplied surface brief and the existing interface: a practical collector's index with warm paper-like foregrounds on a graphite field. Game artwork carries the color and personality; the interface stays restrained so platform shortcuts, catalog facts, and personal records remain easy to scan.
+This visual direction follows the supplied reference: a cinematic game shelf on a graphite field, punctuated by vivid lime for actions and active states. Real game artwork carries the color and personality; the interface keeps catalog facts and private player records easy to scan.
 
 The catalog index is functional, not a decorative texture. Preserve explicit PS2 and PS3 entry points, use only real provider artwork and metadata, and keep private player records visually distinct from public catalog content.
 
 **Key Characteristics:**
-- Graphite surfaces with a restrained orange action color.
+- Graphite surfaces with vivid lime as the action and active-state color.
 - Compact, indexed catalog navigation and artwork-led game discovery.
 - Personal records presented as private, owner-controlled data.
 
 ## Colors
 
-The palette pairs deep graphite surfaces and warm light text with a small, purposeful orange signal.
+The palette pairs deep graphite surfaces and light text with a vivid lime signal.
 
 ### Primary
-- **Signal Orange**: Primary interaction accent and selected-state signal.
-- **Soft Signal Orange**: Secondary accent for emphasis against dark surfaces.
+- **Vivid Lime**: Primary interaction accent and selected-state signal.
+- **Soft Lime**: Secondary accent for emphasis against dark surfaces.
 
 ### Neutral
 - **Graphite**: Global page ground.
@@ -52,10 +54,7 @@ The palette pairs deep graphite surfaces and warm light text with a small, purpo
 
 ## Typography
 
-**Display Font:** Arial, Helvetica, sans-serif (current implementation)
-**Body Font:** Arial, Helvetica, sans-serif
-
-**Character:** The current implementation uses a compact sans-serif voice for catalog density. The display face remains a known refinement opportunity; avoid treating this current choice as an immutable brand commitment.
+**Display and body fonts:** Manrope Variable is imported from `@fontsource-variable/manrope/wght.css`. The `--font-sans` stack uses Manrope Variable with Manrope and system sans-serif fallbacks, and `--font-display` aliases `--font-sans`, so both body and display text use the same stack.
 
 ## Layout
 
@@ -71,7 +70,7 @@ Use restrained rounded corners and thin dividers to distinguish controls and pan
 
 ## Components
 
-- **Primary actions:** Orange fill, dark foreground, and a clear keyboard-focus outline.
+- **Primary actions:** Lime fill, dark foreground, and a clear keyboard-focus outline.
 - **Secondary actions:** Dark surface with a thin neutral border; retain a visible hover and focus state.
 - **Catalog cards:** Let provider artwork lead, with game metadata kept readable and labels consistently aligned.
 - **Private library controls:** Make status, rating, and saved-state feedback explicit; never imply a change was saved when the request failed.

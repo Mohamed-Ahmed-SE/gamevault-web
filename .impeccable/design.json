@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-04T22:48:49Z",
+  "title": "Design System: GameVault",
+  "extensions": {
+    "colorMeta": {
+      "vivid-lime": {
+        "role": "primary",
+        "displayName": "Vivid Lime",
+        "canonical": "#a3e635",
+        "tonalRamp": [
+          "oklch(15% 0.2073 128.85)",
+          "oklch(26% 0.2073 128.85)",
+          "oklch(37% 0.2073 128.85)",
+          "oklch(49% 0.2073 128.85)",
+          "oklch(61% 0.2073 128.85)",
+          "oklch(72% 0.2073 128.85)",
+          "oklch(84% 0.2073 128.85)",
+          "oklch(95% 0.2073 128.85)"
+        ]
+      },
+      "vivid-lime-soft": {
+        "role": "secondary",
+        "displayName": "Soft Lime",
+        "canonical": "#bef264",
+        "tonalRamp": [
+          "oklch(15% 0.1786 126.67)",
+          "oklch(26% 0.1786 126.67)",
+          "oklch(37% 0.1786 126.67)",
+          "oklch(49% 0.1786 126.67)",
+          "oklch(61% 0.1786 126.67)",
+          "oklch(72% 0.1786 126.67)",
+          "oklch(84% 0.1786 126.67)",
+          "oklch(95% 0.1786 126.67)"
+        ]
+      },
+      "graphite": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#07080a",
+        "tonalRamp": [
+          "oklch(15% 0.0051 262.32)",
+          "oklch(26% 0.0051 262.32)",
+          "oklch(37% 0.0051 262.32)",
+          "oklch(49% 0.0051 262.32)",
+          "oklch(61% 0.0051 262.32)",
+          "oklch(72% 0.0051 262.32)",
+          "oklch(84% 0.0051 262.32)",
+          "oklch(95% 0.0051 262.32)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#0e1117",
+        "tonalRamp": [
+          "oklch(15% 0.0133 264.15)",
+          "oklch(26% 0.0133 264.15)",
+          "oklch(37% 0.0133 264.15)",
+          "oklch(49% 0.0133 264.15)",
+          "oklch(61% 0.0133 264.15)",
+          "oklch(72% 0.0133 264.15)",
+          "oklch(84% 0.0133 264.15)",
+          "oklch(95% 0.0133 264.15)"
+        ]
+      },
+      "raised-surface": {
+        "role": "neutral",
+        "displayName": "Raised Surface",
+        "canonical": "#151821",
+        "tonalRamp": [
+          "oklch(15% 0.0185 270.39)",
+          "oklch(26% 0.0185 270.39)",
+          "oklch(37% 0.0185 270.39)",
+          "oklch(49% 0.0185 270.39)",
+          "oklch(61% 0.0185 270.39)",
+          "oklch(72% 0.0185 270.39)",
+          "oklch(84% 0.0185 270.39)",
+          "oklch(95% 0.0185 270.39)"
+        ]
+      },
+      "paper-ink": {
+        "role": "neutral",
+        "displayName": "Paper Ink",
+        "canonical": "#f3f4f6",
+        "tonalRamp": [
+          "oklch(15% 0.0029 264.54)",
+          "oklch(26% 0.0029 264.54)",
+          "oklch(37% 0.0029 264.54)",
+          "oklch(49% 0.0029 264.54)",
+          "oklch(61% 0.0029 264.54)",
+          "oklch(72% 0.0029 264.54)",
+          "oklch(84% 0.0029 264.54)",
+          "oklch(95% 0.0029 264.54)"
+        ]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#9ca3af",
+        "tonalRamp": [
+          "oklch(15% 0.0192 261.32)",
+          "oklch(26% 0.0192 261.32)",
+          "oklch(37% 0.0192 261.32)",
+          "oklch(49% 0.0192 261.32)",
+          "oklch(61% 0.0192 261.32)",
+          "oklch(72% 0.0192 261.32)",
+          "oklch(84% 0.0192 261.32)",
+          "oklch(95% 0.0192 261.32)"
+        ]
+      },
+      "faint-ink": {
+        "role": "neutral",
+        "displayName": "Faint Ink",
+        "canonical": "#6b7280",
+        "tonalRamp": [
+          "oklch(15% 0.0234 264.36)",
+          "oklch(26% 0.0234 264.36)",
+          "oklch(37% 0.0234 264.36)",
+          "oklch(49% 0.0234 264.36)",
+          "oklch(61% 0.0234 264.36)",
+          "oklch(72% 0.0234 264.36)",
+          "oklch(84% 0.0234 264.36)",
+          "oklch(95% 0.0234 264.36)"
+        ]
+      },
+      "divider": {
+        "role": "neutral",
+        "displayName": "Divider",
+        "canonical": "rgba(255, 255, 255, 0.08)",
+        "tonalRamp": [
+          "oklch(15% 0 0 / 8%)",
+          "oklch(26% 0 0 / 8%)",
+          "oklch(37% 0 0 / 8%)",
+          "oklch(49% 0 0 / 8%)",
+          "oklch(61% 0 0 / 8%)",
+          "oklch(72% 0 0 / 8%)",
+          "oklch(84% 0 0 / 8%)",
+          "oklch(95% 0 0 / 8%)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Manrope Variable",
+        "purpose": "Manrope Variable from @fontsource-variable/manrope/wght.css, using the shared --font-sans stack and its system fallbacks via --font-display."
+      },
+      "body": {
+        "displayName": "Manrope Variable",
+        "purpose": "Manrope Variable from @fontsource-variable/manrope/wght.css, using the --font-sans stack with Manrope, -apple-system, BlinkMacSystemFont, Segoe UI, and sans-serif fallbacks."
+      }
+    },
+    "shadows": [
+      {
+        "name": "primary-button-hover",
+        "value": "0 4px 16px rgba(163, 230, 53, 0.25)",
+        "purpose": "Soft offset shadow on the primary button hover state."
+      },
+      {
+        "name": "catalog-card-hover",
+        "value": "0 12px 30px rgba(0, 0, 0, 0.7), 0 0 16px var(--vault-red-glow)",
+        "purpose": "Raised hover treatment on existing catalog artwork cards."
+      }
+    ],
+    "motion": [
+      {
+        "name": "button-transition",
+        "value": "transform 0.18s, background 0.18s, box-shadow 0.18s",
+        "purpose": "Existing button hover transitions."
+      },
+      {
+        "name": "catalog-card-hover",
+        "value": "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.22s ease, box-shadow 0.22s ease",
+        "purpose": "Existing catalog card hover and focus-visible transitions."
+      },
+      {
+        "name": "library-cover-hover",
+        "value": "transform 0.22s cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Subtle artwork scale on library card hover or keyboard focus."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Global page-shell and library card narrow-screen layout."
+      },
+      {
+        "name": "nav-compact",
+        "value": "900px",
+        "purpose": "Existing header navigation wraps into a scrollable row."
+      },
+      {
+        "name": "home-small",
+        "value": "680px",
+        "purpose": "Existing home cards and console tiles reduce to narrow layouts."
+      },
+      {
+        "name": "home-wide",
+        "value": "1200px",
+        "purpose": "Existing home card grids and metrics change column counts."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "description": "High-emphasis action used for sign-in and primary tasks.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">Sign in</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid var(--accent); border-radius: 9999px; background: var(--accent); color: var(--bg); padding: 11px 22px; font-size: 13.5px; font-weight: 800; letter-spacing: 0.04em; cursor: pointer; transition: transform 0.18s, background 0.18s, box-shadow 0.18s; } .ds-btn-primary:hover { transform: translateY(-2px); background: #bef264; box-shadow: 0 4px 16px rgba(163, 230, 53, 0.25); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "description": "Lower-emphasis action on dark or artwork surfaces.",
+      "html": "<button class=\"ds-btn-outline\" type=\"button\">Cancel</button>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 9999px; background: rgba(255, 255, 255, 0.08); color: #ffffff; padding: 11px 22px; font-size: 13.5px; font-weight: 800; letter-spacing: 0.04em; cursor: pointer; backdrop-filter: blur(12px); transition: transform 0.18s, background 0.18s, box-shadow 0.18s; } .ds-btn-outline:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.35); } .ds-btn-outline:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "description": "Dark catalog search field with a clear focus state.",
+      "html": "<input class=\"ds-search-input\" type=\"search\" aria-label=\"Search your library\" placeholder=\"Search your library\">",
+      "css": ".ds-search-input { width: 100%; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: #ffffff; padding: 12px 16px; font-size: 14.5px; transition: border-color 0.18s ease; } .ds-search-input:focus-visible { border-color: var(--accent-red); outline: 2px solid var(--accent); outline-offset: 4px; } .ds-search-input::placeholder { color: var(--muted); opacity: 1; }"
+    },
+    {
+      "name": "Main Navigation",
+      "kind": "nav",
+      "description": "Compact uppercase links with a lime underline for the current section.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a class=\"ds-nav-link\" href=\"#home\">HOME</a><a class=\"ds-nav-link\" href=\"#discover\">DISCOVER</a><a class=\"ds-nav-link\" href=\"#library\" aria-current=\"page\">LIBRARY</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 32px; } .ds-nav-link { position: relative; padding: 6px 0; color: #9ca3af; font-size: 13px; font-weight: 800; letter-spacing: 0.12em; text-decoration: none; transition: color 0.18s ease; } .ds-nav-link:hover, .ds-nav-link[aria-current=\"page\"] { color: #ffffff; } .ds-nav-link[aria-current=\"page\"]::after { position: absolute; right: 0; bottom: 0; left: 0; height: 2px; border-radius: 2px; background: var(--accent); content: \"\"; } .ds-nav-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }"
+    },
+    {
+      "name": "Library Game Card",
+      "kind": "card",
+      "description": "Artwork-led saved game with owner status, favorite, rating, and playtime fields.",
+      "html": "<article class=\"ds-library-card\"><a class=\"ds-library-art\" href=\"#game\" aria-label=\"View Game title\"><img class=\"ds-library-cover\" src=\"/images/spiderman2-ps5-hero.png\" alt=\"\"></a><div class=\"ds-library-content\"><div class=\"ds-library-topline\"><span class=\"ds-library-status\">STATUS</span><span class=\"ds-library-favorite\" role=\"img\" aria-label=\"Favorite\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z\"></path></svg></span></div><div class=\"ds-library-copy\"><a class=\"ds-library-title-link\" href=\"#game\"><h2 class=\"ds-library-title\">Game title</h2></a><p class=\"ds-library-platforms\">Platform name</p></div><div class=\"ds-library-stats\"><span class=\"ds-library-stat\">Rating</span><span class=\"ds-library-stat\">Playtime</span></div></div></article>",
+      "css": ".ds-library-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); transition: transform 0.18s ease, border-color 0.18s ease; } .ds-library-card:hover, .ds-library-card:focus-within { transform: translateY(-2px); border-color: var(--accent); } .ds-library-art { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--surface); } .ds-library-cover { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1); } .ds-library-card:hover .ds-library-cover, .ds-library-card:focus-within .ds-library-cover { transform: scale(1.04); } .ds-library-content { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 12px; padding: 14px; } .ds-library-topline { display: flex; align-items: center; justify-content: space-between; gap: 8px; } .ds-library-status { display: inline-flex; max-width: 100%; align-items: center; border-radius: 9999px; background: var(--accent); color: var(--bg); padding: 4px 9px; font-family: var(--font-display); font-size: 10px; font-weight: 800; letter-spacing: 0.04em; line-height: 1.4; text-transform: uppercase; } .ds-library-favorite { display: inline-grid; width: 28px; height: 28px; flex: 0 0 auto; place-items: center; border: 1px solid rgba(163, 230, 53, 0.24); border-radius: 50%; background: rgba(163, 230, 53, 0.1); color: var(--accent); } .ds-library-favorite svg { width: 15px; height: 15px; fill: currentColor; stroke: currentColor; stroke-width: 2; } .ds-library-copy { min-width: 0; } .ds-library-title-link { color: var(--ink); text-decoration: none; text-underline-offset: 3px; } .ds-library-title-link:hover { text-decoration: underline; } .ds-library-title { display: -webkit-box; overflow: hidden; margin: 0; font-family: var(--font-display); font-size: 16px; font-weight: 800; line-height: 1.25; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 2; } .ds-library-platforms { display: -webkit-box; overflow: hidden; margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; -webkit-box-orient: vertical; -webkit-line-clamp: 2; } .ds-library-stats { display: flex; flex-wrap: wrap; gap: 10px 14px; margin-top: auto; border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; } .ds-library-stat { display: inline-flex; min-width: 0; align-items: center; gap: 5px; } .ds-library-stat:first-child span { color: var(--accent); } .ds-library-art:focus-visible, .ds-library-title-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; } @media (prefers-reduced-motion: reduce) { .ds-library-card, .ds-library-cover { transition: none; } .ds-library-card:hover, .ds-library-card:focus-within, .ds-library-card:hover .ds-library-cover, .ds-library-card:focus-within .ds-library-cover { transform: none; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Collector's Catalog",
+    "overview": "This visual direction follows the supplied reference: a cinematic game shelf on a graphite field, punctuated by vivid lime for actions and active states. Real game artwork carries the color and personality; the interface keeps catalog facts and private player records easy to scan.\n\nThe catalog index is functional, not a decorative texture. Preserve explicit PS2 and PS3 entry points, use only real provider artwork and metadata, and keep private player records visually distinct from public catalog content.",
+    "keyCharacteristics": [
+      "Graphite surfaces with vivid lime as the action and active-state color.",
+      "Compact, indexed catalog navigation and artwork-led game discovery.",
+      "Personal records presented as private, owner-controlled data."
+    ],
+    "rules": [],
+    "dos": [
+      "Retain PS2 and PS3 as first-class navigation destinations.",
+      "Distinguish unavailable provider data from an empty catalog result.",
+      "Keep personal notes and library activity private to their owner."
+    ],
+    "donts": [
+      "Do not invent catalog data or imply console-account synchronization.",
+      "Do not make decorative patterns compete with the catalog index or game artwork."
+    ]
+  }
+}
