@@ -1,7 +1,7 @@
 export type PlatformSummary = { id: string; slug: string; name: string };
 export type GenreSummary = { id: string; name: string; slug: string };
 export type GameSummary = {
-  id: string; slug: string; title: string; coverUrl: string | null; backgroundUrl: string | null;
+  id: string; slug: string; title: string; coverUrl: string | null; backgroundUrl: string | null; logoUrl?: string | null;
   releaseDate: string | null; rating: number | null; metacritic: number | null;
   platforms: PlatformSummary[]; genres: GenreSummary[]; description?: string;
 };
@@ -13,5 +13,5 @@ export type GameDetails = GameSummary & {
   tags: string[]; website: string | null; esrbRating: string | null; requirements: string | null;
   images: GameImage[]; trailers: GameTrailer[]; achievements: GameAchievement[]; similar: GameSummary[];
 };
-export type SearchParams = { query?: string; platform?: string; genre?: string; year?: string; minRating?: number; ordering?: string; page?: number };
+export type SearchParams = { query?: string; platform?: string; genre?: string; year?: string; minRating?: number; ordering?: string; page?: number; artworkLimit?: number };
 export type GameSearchResult = { games: GameSummary[]; count: number; page: number; pageSize: number };

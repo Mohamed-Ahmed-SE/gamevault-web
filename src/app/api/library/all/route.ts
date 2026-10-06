@@ -10,7 +10,7 @@ export async function GET() {
   const [games, favorites, ratings, profile] = await Promise.all([
     supabase.from("user_games").select("*").eq("user_id", user.id).order("updated_at", { ascending: false }),
     supabase.from("favorite_games").select("game_id").eq("user_id", user.id),
-    supabase.from("game_ratings").select("game_id,overall").eq("user_id", user.id),
+    supabase.from("game_ratings").select("game_id,overall").eq("user_id", user.id).order("overall", { ascending: false, nullsFirst: false }),
     supabase.from("profiles").select("*").eq("id", user.id).maybeSingle(),
   ]);
   const queryError = games.error ?? favorites.error ?? ratings.error ?? profile.error;

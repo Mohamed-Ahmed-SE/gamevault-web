@@ -1,6 +1,8 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { getSupabasePublicConfig } from "@/lib/env";
+
 export function createClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL; const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) throw new Error("Supabase is not configured. Add the public project URL and anon key to .env.local.");
-  return createBrowserClient(url, key);
+  const { config, error } = getSupabasePublicConfig();
+  if (!config) throw new Error(`${error} Configure the public Supabase values in the deployment environment.`);
+  return createBrowserClient(config.url, config.anonKey);
 }

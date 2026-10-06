@@ -1,10 +1,12 @@
 import type { GameAchievement, GameDetails, GameImage, GameSearchResult, GameSummary, GameTrailer, SearchParams } from "./types";
 import { normalizePlatform } from "./platforms";
+import { getSteamGridArtwork } from "./steamgriddb";
 
 export interface GameProvider {
   searchGames(params: SearchParams): Promise<GameSearchResult>;
   getGameSummary(idOrSlug: string): Promise<GameSummary>;
   getGame(idOrSlug: string): Promise<GameDetails>;
+  getGameWithArtwork(idOrSlug: string): Promise<GameDetails>;
   getScreenshots(gameId: string): Promise<GameImage[]>;
   getTrailers(gameId: string): Promise<GameTrailer[]>;
   getAchievements(gameId: string): Promise<GameAchievement[]>;
@@ -16,11 +18,13 @@ export interface GameProvider {
 type Rawg = Record<string, any>;
 const nullableNumber = (value: unknown): number | null => typeof value === "number" && Number.isFinite(value) ? value : null;
 function toSummary(raw: Rawg): GameSummary {
-  return { id: String(raw.id), slug: String(raw.slug ?? raw.id), title: String(raw.name ?? "Untitled game"), coverUrl: raw.background_image ?? null,
-    backgroundUrl: raw.background_image_additional ?? raw.background_image ?? null, releaseDate: raw.released ?? null,
+  return {
+    id: String(raw.id), slug: String(raw.slug ?? raw.id), title: String(raw.name ?? "Untitled game"), coverUrl: raw.background_image ?? null,
+    backgroundUrl: raw.background_image ?? null, logoUrl: null, releaseDate: raw.released ?? null,
     rating: nullableNumber(raw.rating), metacritic: nullableNumber(raw.metacritic),
     platforms: (raw.platforms ?? []).flatMap((p: Rawg) => p.platform ? [normalizePlatform(p.platform)] : []),
-    genres: (raw.genres ?? []).map((g: Rawg) => ({ id: String(g.id), name: String(g.name), slug: String(g.slug) })) };
+    genres: (raw.genres ?? []).map((g: Rawg) => ({ id: String(g.id), name: String(g.name), slug: String(g.slug) }))
+  };
 }
 async function rawg<T>(path: string): Promise<T> {
   const key = process.env.RAWG_API_KEY;
@@ -32,15 +36,32 @@ async function rawg<T>(path: string): Promise<T> {
 }
 export class RawgProvider implements GameProvider {
   async searchGames(params: SearchParams = {}): Promise<GameSearchResult> {
+    const today = new Date().toISOString().slice(0, 10);
     const qs = new URLSearchParams({ page: String(params.page ?? 1), page_size: "24" });
     if (params.query) qs.set("search", params.query);
     if (params.platform) qs.set("platforms", params.platform);
     if (params.genre) qs.set("genres", params.genre);
-    if (params.year) qs.set("dates", params.year.includes(",") ? params.year : `${params.year}-01-01,${params.year}-12-31`);
+    if (params.year) {
+      qs.set("dates", params.year.includes(",") ? params.year : `${params.year}-01-01,${params.year}-12-31`);
+    } else if (params.ordering === "-released") {
+      qs.set("dates", `1970-01-01,${today}`);
+    }
     if (params.minRating) qs.set("rating", `${params.minRating},5`);
     if (params.ordering) qs.set("ordering", params.ordering);
     const result = await rawg<{ results: Rawg[]; count: number }>(`games?${qs}`);
-    return { games: result.results.map(toSummary), count: result.count, page: params.page ?? 1, pageSize: 24 };
+    // Filter out entries without artwork
+    const valid = result.results.filter((x) => !!x.background_image).map(toSummary);
+    const games = await this.enrichArtwork(valid, params.artworkLimit ?? 0);
+    return { games, count: result.count, page: params.page ?? 1, pageSize: 24 };
+  }
+  private async enrichArtwork(games: GameSummary[], limit: number): Promise<GameSummary[]> {
+    if (!process.env.STEAMGRIDDB_API_KEY || limit <= 0) return games;
+    const boundedLimit = Math.min(Math.floor(limit), 8, games.length);
+    const enriched = await Promise.all(games.slice(0, boundedLimit).map(async (game) => {
+      const artwork = await getSteamGridArtwork(game.title, game.releaseDate);
+      return { ...game, coverUrl: artwork.gridUrl ?? game.coverUrl, logoUrl: artwork.logoUrl };
+    }));
+    return [...enriched, ...games.slice(boundedLimit)];
   }
   async getGameSummary(idOrSlug: string): Promise<GameSummary> {
     return toSummary(await rawg<Rawg>(`games/${encodeURIComponent(idOrSlug)}`));
@@ -66,11 +87,18 @@ export class RawgProvider implements GameProvider {
     const [raw, images, trailers, achievements, similar] = await Promise.all([
       rawg<Rawg>(`games/${encodeURIComponent(id)}`), optional(this.getScreenshots(id), []), optional(this.getTrailers(id), []), optional(this.getAchievements(id), []), optional(this.getSuggestedGames(id), []),
     ]);
-    return { ...toSummary(raw), description: String(raw.description_raw ?? raw.description ?? "Details are not available."), storyline: typeof raw.storyline === "string" ? raw.storyline : null,
+    return {
+      ...toSummary(raw), description: String(raw.description_raw ?? raw.description ?? "Details are not available."), storyline: typeof raw.storyline === "string" ? raw.storyline : null,
       developers: (raw.developers ?? []).map((x: Rawg) => x.name), publishers: (raw.publishers ?? []).map((x: Rawg) => x.name),
       tags: (raw.tags ?? []).slice(0, 12).map((x: Rawg) => x.name), website: raw.website || null, esrbRating: raw.esrb_rating?.name ?? null,
       requirements: raw.platforms?.find((p: Rawg) => p.platform?.slug === "pc")?.requirements?.minimum ?? null,
-      images, trailers, achievements, similar };
+      images, trailers, achievements, similar
+    };
+  }
+  async getGameWithArtwork(id: string): Promise<GameDetails> {
+    const game = await this.getGame(id);
+    const [enriched] = await this.enrichArtwork([game], 1);
+    return { ...game, coverUrl: enriched.coverUrl, logoUrl: enriched.logoUrl };
   }
 }
 export const gameProvider: GameProvider = new RawgProvider();

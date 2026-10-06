@@ -45,6 +45,12 @@ if (p_event_type='library_added' and p_amount<>10) or (p_event_type='first_playi
 insert into public.xp_events(user_id,provider,game_id,event_type,xp_amount) values(p_user_id,'rawg',p_game_id,p_event_type,p_amount) on conflict do nothing; get diagnostics inserted = row_count;
 if inserted=1 then update public.profiles set xp=xp+p_amount,level=1+floor((xp+p_amount)/100.0)::int,updated_at=now() where id=p_user_id; end if; end; $$;
 alter table public.profiles enable row level security;alter table public.user_games enable row level security;alter table public.game_ratings enable row level security;alter table public.favorite_games enable row level security;alter table public.xp_events enable row level security;
+drop policy if exists "Profiles are publicly readable" on public.profiles;
+drop policy if exists "Users update own public profile" on public.profiles;
+drop policy if exists "Own games only" on public.user_games;
+drop policy if exists "Own ratings only" on public.game_ratings;
+drop policy if exists "Own favorites only" on public.favorite_games;
+drop policy if exists "Own XP readable" on public.xp_events;
 create policy "Profiles are publicly readable" on public.profiles for select using (true);
 create policy "Users update own public profile" on public.profiles for update using (auth.uid()=id) with check (auth.uid()=id);
 create policy "Own games only" on public.user_games for all using (auth.uid()=user_id) with check (auth.uid()=user_id);
