@@ -11,10 +11,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   try {
-    const game = await gameProvider.getGame(slug);
+    const game = await gameProvider.getGameSummary(slug);
     return {
       title: `${game.title} | GameVault`,
-      description: game.description.slice(0, 160),
+      description: `Catalog information and personal tracking for ${game.title}.`,
     };
   } catch {
     return { title: `${slug.replaceAll("-", " ")} | GameVault` };
